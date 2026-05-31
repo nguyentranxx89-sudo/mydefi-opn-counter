@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OPN Staking DApp</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial; background: linear-gradient(135deg, #0f0f1a, #1a1a2e); color: white; text-align: center; padding: 20px; }
+    .container { max-width: 700px; margin: 0 auto; background: rgba(26, 26, 46, 0.95); padding: 40px; border-radius: 20px; box-shadow: 0 0 30px rgba(0, 255, 136, 0.3); }
+    h1 { color: #00ff88; margin-bottom: 10px; }
+    .contract { font-size: 14px; color: #aaa; margin-bottom: 20px; }
+    button { padding: 14px 32px; margin: 10px; font-size: 17px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+    .connect { background: #4285f4; color: white; }
+    .stake { background: #00ff88; color: black; }
+    .withdraw { background: #ff3366; color: white; }
+    input { padding: 15px; width: 250px; font-size: 16px; border-radius: 10px; border: none; margin: 10px; }
+    .info { background: #16213e; padding: 20px; border-radius: 12px; margin: 25px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔥 OPN Staking DApp</h1>
+    <p style="color:#00ff88;">Season 1 • DeFi & Open Finance</p>
+    
+    <div class="contract">
+      Contract: 0x5c718c9846e2846958D071380e1041fa3C28c912
+    </div>
+
+    <button class="connect" onclick="connectWallet()">🔗 Connect MetaMask</button>
+    
+    <p id="walletAddress" style="margin: 15px 0; font-size: 15px; min-height: 24px;"></p>
+
+    <div class="info">
+      <h2>Your Staked Balance: <span id="balance">0.0000</span> OPN</h2>
+    </div>
+
+    <input type="number" id="amount" placeholder="Nhập số OPN muốn stake" step="0.01">
+    <br>
+    
+    <button class="stake" onclick="stake()">🚀 Stake OPN</button>
+    <button class="withdraw" onclick="withdraw()">⏏️ Withdraw All</button>
+
+    <p style="margin-top: 40px; font-size: 14px; color: #888;">
+      📍 Network: OPN Testnet<br>
+      💰 Lấy test token tại: https://faucet.iopn.tech
+    </p>
+  </div>
+
+  <script src="https://cdn.ethers.io/lib/ethers-5.7.umd.min.js"></script>
+  <script>
+    let provider, signer, contract;
+    const contractAddress = "0x5c718c9846e2846958D071380e1041fa3C28c912";
+
+    const abi = [
+      "function stake() public payable",
+      "function withdraw() public",
+      "function getBalance(address) public view returns (uint256)"
+    ];
+
+    async function connectWallet() {
+      if (!window.ethereum) return alert("Vui lòng cài MetaMask!");
+
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      signer = provider.getSigner();
+      contract = new ethers.Contract(contractAddress, abi, signer);
+
+      const address = await signer.getAddress();
+      document.getElementById("walletAddress").innerHTML = `✅ Connected: ${address.slice(0,6)}...${address.slice(-4)}`;
+      
+      updateBalance();
+    }
+
+    async function updateBalance() {
+      try {
+        const address = await signer.getAddress();
+        const bal = await contract.getBalance(address);
+        document.getElementById("balance").innerText = (bal / 1e18).toFixed(4);
+      } catch(e) {}
+    }
+
+    async function stake() {
+      if (!contract) return alert("Vui lòng Connect Wallet trước!");
+      const amount = document.getElementById("amount").value;
+      if (!amount || amount <= 0) return alert("Nhập số lượng hợp lệ!");
+
+      try {
+        const tx = await contract.stake({ value: ethers.utils.parseEther(amount) });
+        alert("Đang stake... Chờ xác nhận trên MetaMask");
+        await tx.wait();
+        alert("✅ Stake thành công!");
+        updateBalance();
+      } catch(e) { alert("Lỗi: " + e.message); }
+    }
+
+    async function withdraw() {
+      if (!contract) return alert("Vui lòng Connect Wallet trước!");
+      try {
+        const tx = await contract.withdraw();
+        alert("Đang withdraw... Chờ xác nhận");
+        await tx.wait();
+        alert("✅ Withdraw thành công!");
+        updateBalance();
+      } catch(e) { alert("Lỗi: " + e.message); }
+    }
+  </script>
+</body>
+</html>
