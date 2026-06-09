@@ -104,8 +104,7 @@ main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:2rem 1.2r
   letter-spacing:1px;color:var(--txt2);margin-bottom:.8rem}
 .info-row{display:flex;justify-content:space-between;align-items:center;
   font-size:12px;margin-bottom:.5rem;font-family:'Space Mono',monospace}
-.info-row .k{color:var(--txt3)}
-.info-row .v{color:var(--txt2)}
+.info-row .k{color:var(--txt3)}.info-row .v{color:var(--txt2)}
 .input-wrap{position:relative;margin-bottom:.65rem}
 .input-wrap input{width:100%;background:var(--bg);
   border:1px solid var(--b3);border-radius:var(--rs);
@@ -121,12 +120,9 @@ main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:2rem 1.2r
   font-family:'Syne',sans-serif;font-weight:700;font-size:13px;
   cursor:pointer;transition:.15s;border:none;
   display:flex;align-items:center;justify-content:center;gap:6px}
-.btn-green{background:var(--acc);color:#050a06}
-.btn-green:hover{background:var(--acc2)}
-.btn-red{background:transparent;color:var(--red);border:1px solid rgba(255,79,79,.25)}
-.btn-red:hover{background:rgba(255,79,79,.07)}
-.btn-amber{background:transparent;color:var(--amber);border:1px solid rgba(255,184,48,.25)}
-.btn-amber:hover{background:rgba(255,184,48,.07)}
+.btn-green{background:var(--acc);color:#050a06}.btn-green:hover{background:var(--acc2)}
+.btn-red{background:transparent;color:var(--red);border:1px solid rgba(255,79,79,.25)}.btn-red:hover{background:rgba(255,79,79,.07)}
+.btn-amber{background:transparent;color:var(--amber);border:1px solid rgba(255,184,48,.25)}.btn-amber:hover{background:rgba(255,184,48,.07)}
 .btn-full:disabled{opacity:.35;cursor:not-allowed}
 .reward-panel{background:linear-gradient(135deg,rgba(57,255,110,.06),var(--s2));
   border:1px solid rgba(57,255,110,.18);border-radius:var(--r);padding:1.1rem;
@@ -156,89 +152,56 @@ footer{position:relative;z-index:1;text-align:center;padding:1.5rem;
   font-size:11px;color:var(--txt4)}
 footer a{color:var(--txt3);text-decoration:none}
 footer a:hover{color:var(--txt2)}
-@media(max-width:600px){
-  .pool-body{grid-template-columns:1fr}
-  .pool-nums{gap:.8rem}
-}
+@media(max-width:600px){.pool-body{grid-template-columns:1fr}.pool-nums{gap:.8rem}}
 </style>
 </head>
 <body>
-
 <header>
-  <div class="logo">
-    <div class="logo-ring">⬡</div>
-    OPN Stake
-  </div>
+  <div class="logo"><div class="logo-ring">⬡</div>OPN Stake</div>
   <div class="hright">
     <div class="badge-chain">OPN TESTNET</div>
-    <div id="walletPill">
-      <div class="dot-live"></div>
-      <span id="addrTxt">0x0000...0000</span>
-    </div>
+    <div id="walletPill"><div class="dot-live"></div><span id="addrTxt">0x0000...0000</span></div>
     <button id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
   </div>
 </header>
-
 <div id="alertBox"></div>
-
 <main>
   <div class="hero">
     <div class="hero-tag">⚡ Season 1 · DeFi &amp; Open Finance</div>
-    <h1>Stake on <span>OPN</span> Chain.<br/>Earn every block.</h1>
-    <p>Multi-pool staking powered by MasterChef contract. Deposit LP tokens, harvest rewards, withdraw anytime.</p>
+    <h1>Stake on <span>OPN</span> Chain.<br/>Earn SOPN every block.</h1>
+    <p>Multi-pool staking powered by MasterChef V2 + SOPN reward token. Deposit, harvest, withdraw anytime.</p>
     <div class="hero-actions">
       <button class="btn-hero primary" onclick="connectWallet()">Get Started</button>
       <a class="btn-hero ghost" href="https://github.com/nguyentranxx89-sudo/mydefi-opn-counter" target="_blank">View Code</a>
     </div>
   </div>
-
   <div class="stats-row">
-    <div class="stat-cell">
-      <div class="stat-lbl">Contract</div>
-      <div class="stat-val mono" title="0x81eDA9b8D48973D6d12C494b3d357e67467b0ADe">0x81eD…0ADe</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-lbl">Reward / Block</div>
-      <div class="stat-val g" id="s_rpb">—</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-lbl">Total Alloc Pts</div>
-      <div class="stat-val" id="s_tap">—</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-lbl">Active Pools</div>
-      <div class="stat-val" id="s_pools">—</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-lbl">Your Staked</div>
-      <div class="stat-val g" id="s_mine">—</div>
-    </div>
+    <div class="stat-cell"><div class="stat-lbl">MasterChef V2</div><div class="stat-val mono">0x7598…D826</div></div>
+    <div class="stat-cell"><div class="stat-lbl">Reward / Block</div><div class="stat-val g" id="s_rpb">—</div></div>
+    <div class="stat-cell"><div class="stat-lbl">Total Alloc Pts</div><div class="stat-val" id="s_tap">—</div></div>
+    <div class="stat-cell"><div class="stat-lbl">Active Pools</div><div class="stat-val" id="s_pools">—</div></div>
+    <div class="stat-cell"><div class="stat-lbl">Your Staked</div><div class="stat-val g" id="s_mine">—</div></div>
   </div>
-
   <div class="sec-head">
     <div class="sec-title">Staking Pools</div>
     <button class="btn-sm" onclick="loadPools()">↻ Refresh</button>
   </div>
-
   <div id="noWallet">
     <h2>Connect Your Wallet</h2>
     <p>Connect MetaMask to view pools and start staking on OPN Testnet</p>
     <button class="btn-hero primary" onclick="connectWallet()">Connect Wallet</button>
   </div>
-
   <div id="poolsWrap"></div>
 </main>
-
 <footer>
-  Contract:
-  <a href="https://testnet.iopn.tech/address/0x81eDA9b8D48973D6d12C494b3d357e67467b0ADe" target="_blank">
-    0x81eDA9b8D48973D6d12C494b3d357e67467b0ADe
+  MasterChef V2:
+  <a href="https://testnet.iopn.tech/address/0x759821bE6f31F86dB7D080C13E742f5eEF3FD826" target="_blank">
+    0x759821bE6f31F86dB7D080C13E742f5eEF3FD826
   </a>
   &nbsp;·&nbsp;
   <a href="https://github.com/nguyentranxx89-sudo/mydefi-opn-counter" target="_blank">GitHub</a>
   &nbsp;·&nbsp; IOPn Builders Season 1
 </footer>
-
 <script>
 const CONTRACT="0x759821bE6f31F86dB7D080C13E742f5eEF3FD826";
 const EXPLORER="https://testnet.iopn.tech";
@@ -260,9 +223,7 @@ const ERC20=[
   {inputs:[],name:"symbol",outputs:[{name:"",type:"string"}],stateMutability:"view",type:"function"},
   {inputs:[],name:"name",outputs:[{name:"",type:"string"}],stateMutability:"view",type:"function"}
 ];
-
 let provider,signer,contract,user,pools=[],refreshTimer;
-
 let alertTO;
 function toast(msg,type='info',tx=''){
   const b=document.getElementById('alertBox');
@@ -270,9 +231,8 @@ function toast(msg,type='info',tx=''){
   b.innerHTML=msg+(tx?`<div class="alert-tx"><a href="${EXPLORER}/tx/${tx}" target="_blank">${tx.slice(0,16)}…${tx.slice(-6)} ↗</a></div>`:'');
   clearTimeout(alertTO);alertTO=setTimeout(()=>b.style.display='none',7000);
 }
-
 async function connectWallet(){
-  if(!window.ethereum){toast('MetaMask not found. Please install it.','err');return;}
+  if(!window.ethereum){toast('MetaMask not found.','err');return;}
   try{
     const {ethers}=window;
     provider=new ethers.BrowserProvider(window.ethereum);
@@ -281,52 +241,36 @@ async function connectWallet(){
     user=await signer.getAddress();
     contract=new ethers.Contract(CONTRACT,ABI,signer);
     document.getElementById('connectBtn').style.display='none';
-    const pill=document.getElementById('walletPill');
-    pill.style.display='flex';
+    document.getElementById('walletPill').style.display='flex';
     document.getElementById('addrTxt').textContent=user.slice(0,6)+'…'+user.slice(-4);
     document.getElementById('noWallet').style.display='none';
     toast('Wallet connected!','ok');
-    await loadGlobal();
-    await loadPools();
-    clearInterval(refreshTimer);
-    refreshTimer=setInterval(refreshOpenPending,20000);
+    await loadGlobal();await loadPools();
+    clearInterval(refreshTimer);refreshTimer=setInterval(refreshOpenPending,20000);
     window.ethereum.on('accountsChanged',()=>location.reload());
   }catch(e){toast('Connection failed: '+(e.message||e),'err');}
 }
-
 async function loadGlobal(){
   try{
     const {ethers}=window;
     const rc=new ethers.Contract(CONTRACT,ABI,provider);
     const [rpb,tap]=await Promise.all([rc.rewardPerBlock(),rc.totalAllocPoint()]);
-    document.getElementById('s_rpb').textContent=parseFloat(ethers.formatEther(rpb)).toFixed(4);
+    document.getElementById('s_rpb').textContent=parseFloat(ethers.formatEther(rpb)).toFixed(4)+' SOPN';
     document.getElementById('s_tap').textContent=tap.toString();
   }catch(e){console.error(e);}
 }
-
 async function loadPools(){
   if(!contract)return;
   const wrap=document.getElementById('poolsWrap');
-  wrap.innerHTML=`<div style="padding:2.5rem;text-align:center;color:var(--txt3)">
-    <div class="spin" style="width:26px;height:26px;border-width:3px;margin:0 auto 1rem"></div>
-    <div style="font-size:13px;margin-top:.5rem">Loading pools…</div></div>`;
-  pools=[];
-  const {ethers}=window;
-  let pid=0;
+  wrap.innerHTML='<div style="padding:2.5rem;text-align:center;color:var(--txt3)"><div class="spin" style="width:26px;height:26px;border-width:3px;margin:0 auto 1rem"></div><div style="font-size:13px;margin-top:.5rem">Loading pools…</div></div>';
+  pools=[];const {ethers}=window;let pid=0;
   while(pid<=30){
     try{
       const info=await contract.poolInfo(pid);
-      const [staked,pending]=await Promise.all([
-        contract.userAmount(pid,user),
-        contract.pendingReward(pid,user)
-      ]);
+      const [staked,pending]=await Promise.all([contract.userAmount(pid,user),contract.pendingReward(pid,user)]);
       let sym='LP',dec=18,tname='LP Token';
-      try{
-        const tok=new ethers.Contract(info.lpToken,ERC20,provider);
-        [sym,dec,tname]=await Promise.all([tok.symbol(),tok.decimals(),tok.name()]);
-      }catch{}
-      pools.push({pid,lpToken:info.lpToken,allocPoint:info.allocPoint,staked,pending,sym,dec,tname,walletBal:null});
-      pid++;
+      try{const tok=new ethers.Contract(info.lpToken,ERC20,provider);[sym,dec,tname]=await Promise.all([tok.symbol(),tok.decimals(),tok.name()]);}catch{}
+      pools.push({pid,lpToken:info.lpToken,allocPoint:info.allocPoint,staked,pending,sym,dec,tname,walletBal:null});pid++;
     }catch{break;}
   }
   document.getElementById('s_pools').textContent=pools.length;
@@ -334,174 +278,98 @@ async function loadPools(){
   document.getElementById('s_mine').textContent=parseFloat(ethers.formatEther(tot)).toFixed(4);
   renderPools();
 }
-
 function renderPools(){
   const wrap=document.getElementById('poolsWrap');
-  if(!pools.length){
-    wrap.innerHTML=`<div style="text-align:center;padding:2rem;color:var(--txt3);font-size:14px">No pools found.</div>`;
-    return;
-  }
+  if(!pools.length){wrap.innerHTML='<div style="text-align:center;padding:2rem;color:var(--txt3);font-size:14px">No pools found.</div>';return;}
+  const {ethers}=window;
   wrap.innerHTML=pools.map(p=>{
-    const {ethers}=window;
     const staked=parseFloat(ethers.formatUnits(p.staked,p.dec)).toFixed(4);
     const pend=parseFloat(ethers.formatEther(p.pending)).toFixed(6);
     return `<div class="pool-card" id="pc${p.pid}">
-  <div class="pool-top" onclick="togglePool(${p.pid})">
-    <div class="pool-id">${p.pid}</div>
-    <div class="pool-meta">
-      <div class="pool-name">${p.sym} Pool</div>
-      <div class="pool-addr">${p.lpToken.slice(0,8)}…${p.lpToken.slice(-6)}</div>
-    </div>
-    <div class="pool-nums">
-      <div><div class="pnum-lbl">Alloc</div><div class="pnum-val">${p.allocPoint.toString()}</div></div>
-      <div><div class="pnum-lbl">Staked</div><div class="pnum-val">${staked}</div></div>
-      <div><div class="pnum-lbl">Pending</div><div class="pnum-val g">${pend}</div></div>
-    </div>
-    <div class="chevron">▾</div>
+<div class="pool-top" onclick="togglePool(${p.pid})">
+  <div class="pool-id">${p.pid}</div>
+  <div class="pool-meta"><div class="pool-name">${p.sym} Pool</div><div class="pool-addr">${p.lpToken.slice(0,8)}…${p.lpToken.slice(-6)}</div></div>
+  <div class="pool-nums">
+    <div><div class="pnum-lbl">Alloc</div><div class="pnum-val">${p.allocPoint.toString()}</div></div>
+    <div><div class="pnum-lbl">Staked</div><div class="pnum-val">${staked}</div></div>
+    <div><div class="pnum-lbl">Pending</div><div class="pnum-val g">${pend}</div></div>
   </div>
-  <div class="pool-body" id="pb${p.pid}" style="display:none">
-    <div>
-      <div class="panel" style="margin-bottom:.9rem">
-        <div class="panel-lbl">Deposit ${p.sym}</div>
-        <div class="info-row"><span class="k">Token</span><span class="v">${p.tname}</span></div>
-        <div class="info-row"><span class="k">Wallet</span><span class="v" id="wb${p.pid}">—</span></div>
-        <button class="btn-full btn-amber" style="margin-bottom:.6rem;font-size:12px;padding:8px" onclick="approveToken(${p.pid})">🔓 Approve ${p.sym}</button>
-        <div class="input-wrap">
-          <input type="number" id="di${p.pid}" placeholder="0.0" min="0" step="any"/>
-          <div class="max-tag" onclick="setMax(${p.pid},'d')">MAX</div>
-        </div>
-        <button class="btn-full btn-green" onclick="doDeposit(${p.pid})">↓ Deposit</button>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:.9rem">
-      <div class="panel">
-        <div class="panel-lbl">Withdraw ${p.sym}</div>
-        <div class="info-row"><span class="k">Staked</span><span class="v">${staked} ${p.sym}</span></div>
-        <div class="input-wrap">
-          <input type="number" id="wi${p.pid}" placeholder="0.0" min="0" step="any"/>
-          <div class="max-tag" onclick="setMax(${p.pid},'w')">MAX</div>
-        </div>
-        <button class="btn-full btn-red" onclick="doWithdraw(${p.pid})">↑ Withdraw</button>
-      </div>
-      <div class="reward-panel">
-        <div class="rew-sub">PENDING REWARD</div>
-        <div class="rew-big" id="pr${p.pid}">${pend}</div>
-        <div class="rew-sub">tokens claimable</div>
-        <button class="btn-full btn-green" style="margin-top:.4rem" onclick="doHarvest(${p.pid})">🌾 Harvest</button>
-      </div>
+  <div class="chevron">▾</div>
+</div>
+<div class="pool-body" id="pb${p.pid}" style="display:none">
+  <div>
+    <div class="panel" style="margin-bottom:.9rem">
+      <div class="panel-lbl">Deposit ${p.sym}</div>
+      <div class="info-row"><span class="k">Token</span><span class="v">${p.tname}</span></div>
+      <div class="info-row"><span class="k">Wallet</span><span class="v" id="wb${p.pid}">—</span></div>
+      <button class="btn-full btn-amber" style="margin-bottom:.6rem;font-size:12px;padding:8px" onclick="approveToken(${p.pid})">🔓 Approve ${p.sym}</button>
+      <div class="input-wrap"><input type="number" id="di${p.pid}" placeholder="0.0" min="0" step="any"/><div class="max-tag" onclick="setMax(${p.pid},'d')">MAX</div></div>
+      <button class="btn-full btn-green" onclick="doDeposit(${p.pid})">↓ Deposit</button>
     </div>
   </div>
+  <div style="display:flex;flex-direction:column;gap:.9rem">
+    <div class="panel">
+      <div class="panel-lbl">Withdraw ${p.sym}</div>
+      <div class="info-row"><span class="k">Staked</span><span class="v">${staked} ${p.sym}</span></div>
+      <div class="input-wrap"><input type="number" id="wi${p.pid}" placeholder="0.0" min="0" step="any"/><div class="max-tag" onclick="setMax(${p.pid},'w')">MAX</div></div>
+      <button class="btn-full btn-red" onclick="doWithdraw(${p.pid})">↑ Withdraw</button>
+    </div>
+    <div class="reward-panel">
+      <div class="rew-sub">PENDING SOPN REWARD</div>
+      <div class="rew-big" id="pr${p.pid}">${pend}</div>
+      <div class="rew-sub">SOPN claimable now</div>
+      <button class="btn-full btn-green" style="margin-top:.4rem" onclick="doHarvest(${p.pid})">🌾 Harvest SOPN</button>
+    </div>
+  </div>
+</div>
 </div>`;
   }).join('');
 }
-
 async function togglePool(pid){
-  const card=document.getElementById('pc'+pid);
-  const body=document.getElementById('pb'+pid);
+  const card=document.getElementById('pc'+pid);const body=document.getElementById('pb'+pid);
   const isOpen=card.classList.contains('open');
-  document.querySelectorAll('.pool-card.open').forEach(c=>{
-    c.classList.remove('open');
-    document.getElementById('pb'+c.id.replace('pc','')).style.display='none';
-  });
+  document.querySelectorAll('.pool-card.open').forEach(c=>{c.classList.remove('open');const b=document.getElementById('pb'+c.id.replace('pc',''));if(b)b.style.display='none';});
   if(!isOpen){card.classList.add('open');body.style.display='grid';await loadWalletBal(pid);await refreshPending(pid);}
 }
-
 async function loadWalletBal(pid){
-  const {ethers}=window;
-  const p=pools.find(x=>x.pid===pid);if(!p)return;
-  try{
-    const tok=new ethers.Contract(p.lpToken,ERC20,provider);
-    const bal=await tok.balanceOf(user);
-    p.walletBal=bal;
-    document.getElementById('wb'+pid).textContent=parseFloat(ethers.formatUnits(bal,p.dec)).toFixed(4)+' '+p.sym;
-  }catch{document.getElementById('wb'+pid).textContent='N/A';}
+  const {ethers}=window;const p=pools.find(x=>x.pid===pid);if(!p)return;
+  try{const tok=new ethers.Contract(p.lpToken,ERC20,provider);const bal=await tok.balanceOf(user);p.walletBal=bal;document.getElementById('wb'+pid).textContent=parseFloat(ethers.formatUnits(bal,p.dec)).toFixed(4)+' '+p.sym;}
+  catch{document.getElementById('wb'+pid).textContent='N/A';}
 }
-
 function setMax(pid,type){
-  const {ethers}=window;
-  const p=pools.find(x=>x.pid===pid);if(!p)return;
+  const {ethers}=window;const p=pools.find(x=>x.pid===pid);if(!p)return;
   if(type==='d'&&p.walletBal!=null)document.getElementById('di'+pid).value=ethers.formatUnits(p.walletBal,p.dec);
   if(type==='w')document.getElementById('wi'+pid).value=ethers.formatUnits(p.staked,p.dec);
 }
-
 async function approveToken(pid){
-  const {ethers}=window;
-  const p=pools.find(x=>x.pid===pid);if(!p)return;
-  try{
-    toast('Approving '+p.sym+'…','info');
-    const tok=new ethers.Contract(p.lpToken,ERC20,signer);
-    const tx=await tok.approve(CONTRACT,ethers.MaxUint256);
-    toast('Waiting confirmation…','info',tx.hash);
-    await tx.wait();
-    toast('✅ '+p.sym+' approved!','ok',tx.hash);
-  }catch(e){toast('Approve failed: '+(e.reason||e.message),'err');}
+  const {ethers}=window;const p=pools.find(x=>x.pid===pid);if(!p)return;
+  try{toast('Approving '+p.sym+'…','info');const tok=new ethers.Contract(p.lpToken,ERC20,signer);const tx=await tok.approve(CONTRACT,ethers.MaxUint256);toast('Waiting…','info',tx.hash);await tx.wait();toast('✅ '+p.sym+' approved!','ok',tx.hash);}
+  catch(e){toast('Approve failed: '+(e.reason||e.message),'err');}
 }
-
 async function doDeposit(pid){
-  const {ethers}=window;
-  const p=pools.find(x=>x.pid===pid);if(!p)return;
+  const {ethers}=window;const p=pools.find(x=>x.pid===pid);if(!p)return;
   const v=document.getElementById('di'+pid).value;
   if(!v||parseFloat(v)<=0){toast('Enter deposit amount','err');return;}
-  try{
-    const amt=ethers.parseUnits(v,p.dec);
-    toast('Submitting deposit…','info');
-    const tx=await contract.deposit(pid,amt);
-    toast('Deposit sent!','info',tx.hash);
-    await tx.wait();
-    toast('✅ Deposited '+v+' '+p.sym,'ok',tx.hash);
-    document.getElementById('di'+pid).value='';
-    await loadPools();
-  }catch(e){toast('Deposit failed: '+(e.reason||e.message),'err');}
+  try{const amt=ethers.parseUnits(v,p.dec);toast('Submitting deposit…','info');const tx=await contract.deposit(pid,amt);toast('Deposit sent!','info',tx.hash);await tx.wait();toast('✅ Deposited '+v+' '+p.sym,'ok',tx.hash);document.getElementById('di'+pid).value='';await loadPools();}
+  catch(e){toast('Deposit failed: '+(e.reason||e.message),'err');}
 }
-
 async function doWithdraw(pid){
-  const {ethers}=window;
-  const p=pools.find(x=>x.pid===pid);if(!p)return;
+  const {ethers}=window;const p=pools.find(x=>x.pid===pid);if(!p)return;
   const v=document.getElementById('wi'+pid).value;
   if(!v||parseFloat(v)<=0){toast('Enter withdraw amount','err');return;}
-  try{
-    const amt=ethers.parseUnits(v,p.dec);
-    toast('Submitting withdrawal…','info');
-    const tx=await contract.withdraw(pid,amt);
-    toast('Withdraw sent!','info',tx.hash);
-    await tx.wait();
-    toast('✅ Withdrawn '+v+' '+p.sym,'ok',tx.hash);
-    document.getElementById('wi'+pid).value='';
-    await loadPools();
-  }catch(e){toast('Withdraw failed: '+(e.reason||e.message),'err');}
+  try{const amt=ethers.parseUnits(v,p.dec);toast('Withdrawing…','info');const tx=await contract.withdraw(pid,amt);toast('Withdraw sent!','info',tx.hash);await tx.wait();toast('✅ Withdrawn '+v+' '+p.sym,'ok',tx.hash);document.getElementById('wi'+pid).value='';await loadPools();}
+  catch(e){toast('Withdraw failed: '+(e.reason||e.message),'err');}
 }
-
 async function doHarvest(pid){
-  try{
-    toast('Harvesting rewards…','info');
-    const tx=await contract.harvest(pid);
-    toast('Harvest sent!','info',tx.hash);
-    await tx.wait();
-    toast('✅ Rewards harvested!','ok',tx.hash);
-    await refreshPending(pid);
-  }catch(e){toast('Harvest failed: '+(e.reason||e.message),'err');}
+  try{toast('Harvesting…','info');const tx=await contract.harvest(pid);toast('Harvest sent!','info',tx.hash);await tx.wait();toast('✅ SOPN harvested!','ok',tx.hash);await refreshPending(pid);}
+  catch(e){toast('Harvest failed: '+(e.reason||e.message),'err');}
 }
-
 async function refreshPending(pid){
   const {ethers}=window;
-  try{
-    const pend=await contract.pendingReward(pid,user);
-    document.getElementById('pr'+pid).textContent=parseFloat(ethers.formatEther(pend)).toFixed(6);
-    const p=pools.find(x=>x.pid===pid);if(p)p.pending=pend;
-  }catch{}
+  try{const pend=await contract.pendingReward(pid,user);document.getElementById('pr'+pid).textContent=parseFloat(ethers.formatEther(pend)).toFixed(6);const p=pools.find(x=>x.pid===pid);if(p)p.pending=pend;}catch{}
 }
-
-async function refreshOpenPending(){
-  const open=document.querySelector('.pool-card.open');
-  if(open)await refreshPending(parseInt(open.id.replace('pc','')));
-}
-
-window.addEventListener('load',async()=>{
-  if(window.ethereum){
-    const accs=await window.ethereum.request({method:'eth_accounts'}).catch(()=>[]);
-    if(accs.length)connectWallet();
-  }
-});
+async function refreshOpenPending(){const open=document.querySelector('.pool-card.open');if(open)await refreshPending(parseInt(open.id.replace('pc','')));}
+window.addEventListener('load',async()=>{if(window.ethereum){const accs=await window.ethereum.request({method:'eth_accounts'}).catch(()=>[]);if(accs.length)connectWallet();}});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
 </body>
